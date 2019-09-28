@@ -48,16 +48,15 @@
             background: #ffef64 !important
         }
 
-        .title-note:hover td:first-child {
-            text-decoration: underline
-        }
-
-        .content-note {
+        .note-table {
             cursor: pointer;
         }
 
-        .content-note:hover {
+        .note-table:hover td:first-child{
             text-decoration: underline;
+        }
+        .note-table:hover .content-note{
+            background: #00000015;
         }
 
         @media(max-width:992px) {

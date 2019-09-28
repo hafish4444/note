@@ -12,80 +12,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     <style>
-    .table td,
-    .table th {
-        vertical-align: middle;
-    }
-
-    .button {
-        display: inline-block;
-        border-radius: 4px;
-        background-color: #1EC1F4;
-        border: none;
-        color: #FFFFFF;
-        text-align: center;
-        font-size: 28px;
-        padding: 20px;
-        width: 180px;
-        transition: all 0.5s;
-        cursor: pointer;
-        margin: 5px;
-    }
-
-    .button:hover {
-        background: #f4511e;
-    }
-
-    .button span {
-        cursor: pointer;
-        display: inline-block;
-        position: relative;
-        transition: 0.5s;
-    }
-
-    .button span:after {
-        content: '\00bb';
-        position: absolute;
-        opacity: 0;
-        top: 0;
-        right: -20px;
-        transition: 0.5s;
-    }
-
-    .button:hover span {
-        padding-right: 25px;
-    }
-
-    .button:hover span:after {
-        opacity: 1;
-        right: 0;
-    }
+.table td,.table th {vertical-align: middle;}.button {display: inline-block;border-radius: 4px;background-color: #1EC1F4;border: none;color: #FFFFFF;text-align: center;font-size: 28px;padding: 20px;width: 180px;transition: all 0.5s;cursor: pointer;margin: 5px;}.button:hover {background: #f4511e;}.button span {cursor: pointer;display: inline-block;position: relative;transition: 0.5s;}.button:hover span {padding-right: 25px;}.button:hover span:after {opacity: 1;right: 0;}.button span:after {position: absolute;opacity: 0;top: 0;right: -20px;transition: 0.5s;content: '\00bb';}
     </style>
 
-    <script>
-    function insertNote() {
-
-        TitleNote = document.getElementById("NOTE_TITLE").value;
-        NOTE_DETAILTINY = document.getElementById('NOTE_DETAILTINY').value;
-        NOTE_DETAIL = document.getElementById('NOTE_DETAIL').value;
-        Type = document.getElementById('Type').value;
-        PASSWORD = document.getElementById('password').value;
-        if (TitleNote == "" || NOTE_DETAILTINY == "" || NOTE_DETAIL == "" || NOTE_DETAIL == " ") {
-            alert("กรุณากรอกข้อมูลให้ครบถ้วนด้วยจร้าา");
-            return;
-        }
-        $.ajax({
-            type: "POST",
-            url: "insertNote",
-            data: "NOTE_TITLE=" + TitleNote + "&Type=" + Type + "&NOTE_DETAILTINY=" + NOTE_DETAILTINY +
-                "&NOTE_DETAIL=" + NOTE_DETAIL + "&PASSWORD=" + PASSWORD,
-            success: function(msg) {
-                alert(msg);
-                window.location = './';
-            }
-        });
-    }
-    </script>
+<script>function insertNote() {TitleNote = document.getElementById("NOTE_TITLE").value;NOTE_DETAILTINY = document.getElementById('NOTE_DETAILTINY').value;NOTE_DETAIL = document.getElementById('NOTE_DETAIL').value;Type = document.getElementById('Type').value;PASSWORD = document.getElementById('password').value;if (TitleNote == "" || NOTE_DETAILTINY == "" || NOTE_DETAIL == "" || NOTE_DETAIL == " ") {alert("กรุณากรอกข้อมูลให้ครบถ้วนด้วยจร้าา");return;}$.ajax({type: "POST",url: "insertNote",data: "NOTE_TITLE=" + TitleNote + "&Type=" + Type + "&NOTE_DETAILTINY=" + NOTE_DETAILTINY +"&NOTE_DETAIL=" + NOTE_DETAIL + "&PASSWORD=" + PASSWORD,success: function(msg) {alert(msg);window.location = './';}});}</script>
 
     <title>NOTE60</title>
 </head>
@@ -99,8 +29,12 @@
 
 <body style='background: #E7E7E7'>
     <nav class="navbar navbar-dark bg-dark">
+<div class = "container" >
+            <div class="mx-auto col-md-10 px-0" style = "position:relative" >
         <a href="https://angsila.informatics.buu.ac.th/~60160272/note" class="navbar-brand text-white">หน้าหลัก</a>
-        <button class="btn btn-outline-light" onclick=' window.location="addNote"'>เพิ่มโน็ต</button>
+        <button style = "position:absolute ; right:0"  class="btn btn-outline-light" onclick='window.location = "addNote"'>เพิ่มโน็ต</button>
+</div>
+</div>
     </nav>
     <div class="container">
         <div class="row">
@@ -118,8 +52,8 @@
                 <div class='form-group row'>
                     <div class='col-sm-4'>
                         <select id='Type' class='form-control mb-1'>
-                            <option value='CODE'>CODE</option>
                             <option value='ไร้สาระ'>ไร้สาระ</option>
+                            <option value='CODE'>CODE</option>
                         </select>
                     </div>
                     <div class='col-sm-8'>
@@ -130,8 +64,8 @@
 
                 <div class='form-group row'>
                     <div class='col-sm-12'>
-                        <input type='text' id="password" class='form-control'
-                            placeholder="รหัสผ่าน (ถ้าใส่จะเป็นการล็อคห้อง)" maxlength='10'>
+                        <input type='text' id="password" class='form-control' onchange = "chkFormatPass()"
+                            placeholder="รหัสผ่าน (ถ้าใส่จะเป็นการล็อคห้อง)" autocomplete= "off"  maxlength='10'>
                     </div>
                 </div>
 
@@ -144,6 +78,16 @@
             </div>
         </div>
     </div>
+    <script>
+        function chkFormatPass(){
+            chk = document.getElementById("password").value ;
+            chk2 = chk.replace(/\s/g, "") ;
+            if(chk != chk2){
+                alert("รหัสผ่านห้ามมีเว้นวรรค")
+                document.getElementById("password").value  = "";
+            }
+        }
+    </script>
 </body>
 
 </html>

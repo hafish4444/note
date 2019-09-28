@@ -50,15 +50,19 @@ if ($result->num_rows > 0) {
 
 <body style='background: #E7E7E7'>
     <nav class="navbar navbar-dark bg-dark">
+    <div class="container ">
+            <div class="mx-auto col-md-10 px-0" style = "position:relative" >
         <a href="https://angsila.informatics.buu.ac.th/~60160272/note" class="navbar-brand text-white">หน้าหลัก</a>
-        <button class="btn btn-outline-light" onclick=' window.location="addNote"'>เพิ่มโน็ต</button>
+
+        <button style = "position:absolute ; right:0"  class="btn btn-outline-light" onclick='window.location = "addNote"'>เพิ่มโน็ต</button>
+</div>
+</div>
     </nav>
     <div class="container">
         <div class="row">
-            <div class="mx-auto col-sm-10" style="background:#F9F9F9">
+            <div class="mx-auto col-sm-10 shadow" style="background:#F9F9F9">
                 <h2>หัวข้อ : <?php echo $NoteData['NOTE_TITLE'] ?> </h2>
-                <p><textarea class=' form-control' style='width : -webkit-fill-available; height : 84vh'>
-    <?php echo $NoteData['NOTE_DETAIL'] ?></textarea>
+                <p><textarea class=' form-control' style='width : -webkit-fill-available; height : 84vh'><?php echo $NoteData['NOTE_DETAIL'] ?></textarea>
                 </p>
                 <div>
                     <br>
